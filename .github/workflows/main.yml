@@ -5,11 +5,18 @@ on:
  #push:
  schedule:
     # 每天北京时间9点跑
-    - cron:  '0 1 * * *'
+    - cron:  '20 0 * * *'
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
+      - name: Show current time (for debugging)
+        run: |
+          echo "Local time (runner's timezone): $(date)"
+          echo "UTC time: $(date -u)"
+          echo "Timezone info:"
+          timedatectl status || echo "timedatectl not available"
+
       - name: Sync to Gitee
         uses: wearerequired/git-mirror-action@master
         env:
