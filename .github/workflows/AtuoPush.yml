@@ -2,14 +2,13 @@ name: 自动push防止Actions自动停止
 
 on:
   schedule:
-    - cron: '0 11 * * *'
+    - cron: '0 7,11 * * *'
   workflow_dispatch:
 
 jobs:
   build:
     runs-on: ubuntu-latest
-    if: github.event.repository.owner.id == github.event.sender.id || ! github.event.sender.id || github.actor == 'Google'
-
+   
     steps:
       - name: Getting the repo
         uses: actions/checkout@v6
